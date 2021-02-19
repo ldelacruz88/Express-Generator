@@ -223,7 +223,7 @@ campsiteRouter
 		);
 	})
 	.put(authenticate.verifyUser, (req, res, next) => {
-		if (req.user._id) {
+		if (campsite.comments.id(req.params.commentId).author.equals(req.user.id)) {
 			Campsite.findById(req.params.campsiteId)
 				.then((campsite) => {
 					if (campsite && campsite.comments.id(req.params.commentId)) {
